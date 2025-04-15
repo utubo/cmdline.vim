@@ -306,7 +306,7 @@ function s:redraw_cmdline() abort
     if has('nvim')
       call win_execute(cmdline.id, 'lua vim.treesitter.start()')
     else
-      call win_execute(cmdline.id, 'syntax enable')
+      noautocmd call win_execute(cmdline.id, 'syntax enable')
       " NOTE: "syntax enable" restores cursor. Why?
       call s:hidden_cursor()
     endif
