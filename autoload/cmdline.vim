@@ -233,6 +233,8 @@ function cmdline#disable() abort
 
     let &guicursor = cmdline.guicursor
   else
+    hi clear MsgArea
+    hi clear Cursor
     call hlset(cmdline.hl_msg + cmdline.hl_cursor)
 
     let &t_ve = cmdline.t_ve
