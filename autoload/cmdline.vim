@@ -215,8 +215,8 @@ function cmdline#enable() abort
   if has('nvim')
     call nvim_set_hl(0, 'CmdlineCursor', cmdline.hl_cursor)
   else
-    let hl_cursor = cmdline.hl_cursor->copy()
-    let hl_cursor.name = 'CmdlineCursor'
+    let hl_cursor = [cmdline.hl_cursor[0]->copy()]
+    let hl_cursor[0].name = 'CmdlineCursor'
     call hlset(hl_cursor)
   endif
 
@@ -330,6 +330,9 @@ function s:redraw_cmdline() abort
     else
       noautocmd call win_execute(cmdline.id, 'syntax enable')
       " NOTE: "syntax enable" restores cursor. Why?
+      let hl_cursor = [cmdline.hl_cursor[0]->copy()]
+      let hl_cursor[0].name = 'CmdlineCursor'
+      call hlset(hl_cursor)
       call s:hidden_cursor()
     endif
   endif
