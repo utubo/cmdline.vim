@@ -328,7 +328,7 @@ function s:redraw_cmdline() abort
     if has('nvim')
       call win_execute(cmdline.id, 'lua vim.treesitter.start()')
     else
-      noautocmd call win_execute(cmdline.id, 'syntax enable')
+      call win_execute(cmdline.id, 'syntax enable')
       " NOTE: "syntax enable" restores cursor. Why?
       let hl_cursor = [cmdline.hl_cursor[0]->copy()]
       let hl_cursor[0].name = 'CmdlineCursor'
